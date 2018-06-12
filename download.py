@@ -30,7 +30,7 @@ if __name__ == '__main__':
     if args.path is None:
         output = './'
     else:
-        output = agrs.path
+        output = args.path
 
     if not os.path.exists(output):
         os.mkdir(output)
