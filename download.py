@@ -14,7 +14,7 @@ YDL_OPT = {
 
 if __name__ == '__main__':
 
-    parser = argparse.AgrumentParser()
+    parser = argparse.ArgumentParser()
     parser.add_argument('--watch', type=str, help='url of video')
     parser.add_argument('--url', type=str, help='full url of video')
     parser.add_argument('--path', type=str, help='path to download')
@@ -28,15 +28,15 @@ if __name__ == '__main__':
     else:
         raise ValueError('Must have only one agrument')
     if args.path is None:
-        output = '~/'
+        output = './'
     else:
         output = agrs.path
 
     if not os.path.exists(output):
         os.mkdir(output)
 
-    YDL_OPT['outtmpl'] = output
+    YDL_OPT['outtmpl'] = output + '%(title)s.%(ext)s'
 
     with youtube_dl.YoutubeDL(YDL_OPT) as ydl:
-        ydl.download(path)
+        ydl.download([path])
 
